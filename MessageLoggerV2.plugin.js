@@ -37,7 +37,7 @@ module.exports = class MessageLoggerV2 {
   }
   getDescription() {
     return 'Saves all deleted and purged messages, as well as all edit history and ghost pings. Unofficial Lightcord Version. Original version by Lighty';
-	// Changing Plugin Decription.
+	// Changing Plugin Description.
   }
   load() { }
   start() {
@@ -57,7 +57,6 @@ module.exports = class MessageLoggerV2 {
     let XenoLibOutdated = false;
     let ZeresPluginLibraryOutdated = false;
     if (global.BdApi && BdApi.Plugins && typeof BdApi.Plugins.get === 'function') {
-	// Remove message.
       const versionChecker = (a, b) => ((a = a.split('.').map(a => parseInt(a))), (b = b.split('.').map(a => parseInt(a))), !!(b[0] > a[0])) || !!(b[0] == a[0] && b[1] > a[1]) || !!(b[0] == a[0] && b[1] == a[1] && b[2] > a[2]);
       const isOutOfDate = (lib, minVersion) => lib && lib._config && lib._config.info && lib._config.info.version && versionChecker(lib._config.info.version, minVersion)
 	  // Fix Plugin not loading on Lightcord.
@@ -266,7 +265,8 @@ module.exports = class MessageLoggerV2 {
       },
       imageCacheDir: this.pluginDir + '/MLV2_IMAGE_CACHE',
       flags: 0,
-      autoUpdate: true,
+      autoUpdate: false,
+	  // Disable Plugin AutoUpdate by default.
       versionInfo: ''
     };
     const Flags = {
