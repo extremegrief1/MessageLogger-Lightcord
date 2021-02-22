@@ -29,13 +29,15 @@ module.exports = class MessageLoggerV2 {
     return 'MessageLoggerV2';
   }
   getVersion() {
-    return '1.7.67';
+    return '1.7.67 For Lightcord';
+	// Changing plugin version name
   }
   getAuthor() {
     return 'Lighty';
   }
   getDescription() {
-    return 'Saves all deleted and purged messages, as well as all edit history and ghost pings. With highly configurable ignore options, and even restoring deleted messages after restarting Discord.';
+    return 'Saves all deleted and purged messages, as well as all edit history and ghost pings. Unofficial Lightcord Version. Original version by Lighty';
+	// Changing Plugin Decription.
   }
   load() { }
   start() {
@@ -54,16 +56,19 @@ module.exports = class MessageLoggerV2 {
     this.__isPowerCord = !!window.powercord && typeof BdApi.__getPluginConfigPath === 'function' || typeof global.isTab !== 'undefined';
     let XenoLibOutdated = false;
     let ZeresPluginLibraryOutdated = false;
-    if (global.BdApi && BdApi.Plugins && typeof BdApi.Plugins.get === 'function' /* you never know with those retarded client mods */) {
+    if (global.BdApi && BdApi.Plugins && typeof BdApi.Plugins.get === 'function') {
+	// Remove message.
       const versionChecker = (a, b) => ((a = a.split('.').map(a => parseInt(a))), (b = b.split('.').map(a => parseInt(a))), !!(b[0] > a[0])) || !!(b[0] == a[0] && b[1] > a[1]) || !!(b[0] == a[0] && b[1] == a[1] && b[2] > a[2]);
-      const isOutOfDate = (lib, minVersion) => lib && lib._config && lib._config.info && lib._config.info.version && versionChecker(lib._config.info.version, minVersion) || typeof global.isTab !== 'undefined';
+      const isOutOfDate = (lib, minVersion) => lib && lib._config && lib._config.info && lib._config.info.version && versionChecker(lib._config.info.version, minVersion)
+	  // Fix Plugin not loading on Lightcord.
       const iXenoLib = BdApi.Plugins.get('XenoLib');
       const iZeresPluginLibrary = BdApi.Plugins.get('ZeresPluginLibrary');
       if (isOutOfDate(iXenoLib, '1.3.35')) XenoLibOutdated = true;
       if (isOutOfDate(iZeresPluginLibrary, '1.2.28')) ZeresPluginLibraryOutdated = true;
     }
 
-    if (!global.XenoLib || !global.ZeresPluginLibrary || global.DiscordJS || XenoLibOutdated || ZeresPluginLibraryOutdated) {
+    if (!global.XenoLib || !global.ZeresPluginLibrary || XenoLibOutdated || ZeresPluginLibraryOutdated) {
+	// Fix Plugin not loading on Lightcord.
       this._XL_PLUGIN = true;
       if ("undefined" != typeof global.isTab) return;
       const a = !!window.powercord && "function" == typeof BdApi.__getPluginConfigPath,
@@ -190,6 +195,7 @@ module.exports = class MessageLoggerV2 {
     if (BdApi.Plugins && BdApi.Plugins.get('MessageLogger') && BdApi.Plugins.isEnabled('MessageLogger')) XenoLib.Notifications.warning(`[**${this.getName()}**] Using **MessageLogger** with **${this.getName()}** is completely unsupported and will cause issues. Please either disable **MessageLogger** or delete it to avoid issues.`, { timeout: 0 });
     if (window.ED && !this.__isPowerCord) XenoLib.Notifications.warning(`[${this.getName()}] EnhancedDiscord is unsupported! Expect unintended issues and bugs.`, { timeout: 7500 });
     if (window.Lightcord) XenoLib.Notifications.warning(`[${this.getName()}] Lightcord is an unofficial and unsafe client with stolen code that is falsely advertising that it is safe, Lightcord has allowed the spread of token loggers hidden within plugins redistributed by them, and these plugins are not made to work on it. Your account is very likely compromised by malicious people redistributing other peoples plugins, especially if you didn't download this plugin from [GitHub](https://github.com/1Lighty/BetterDiscordPlugins/edit/master/Plugins/MessageLoggerV2/MessageLoggerV2.plugin.js), you should change your password immediately. Consider using a trusted client mod like [BandagedBD](https://rauenzi.github.io/BetterDiscordApp/) or [Powercord](https://powercord.dev/) to avoid losing your account.`, { timeout: 0 });
+	// Remove annoying message when using Lightcord.
     let defaultSettings = {
       obfuscateCSSClasses: true,
       autoBackup: false,
