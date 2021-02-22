@@ -666,11 +666,13 @@ module.exports = (() => {
     const ErrorMessageClassname = XenoLib.joinClassNames('xenoLib-error-text', XenoLib.getClass('errorMessage'), Utilities.getNestedProp(TextElement, 'Colors.ERROR'));
     let ErrorClassname = XenoLib.getClass('input error');
 
-    // sometimes we can't access it for some reason, works thru BBD beta's webpack tho /shrug
-    if (isBBDBeta) setImmediate(() => {
-      const inputClasses = require('webpack').getByProps('multiInputFirst');
-      ErrorClassname = inputClasses.error;
-    });
+	/* sometimes we can't access it for some reason, works thru BBD beta's webpack tho /shrug
+		if (isBBDBeta) setImmediate(() => {
+		const inputClasses = require('webpack').getByProps('multiInputFirst');
+    ErrorClassname = inputClasses.error;
+    });*/
+	
+	// Commenting those lines to fix Lightcord crashing.
 
     try {
       const DelayedCall = WebpackModules.getByProps('DelayedCall').DelayedCall;
@@ -1001,7 +1003,11 @@ module.exports = (() => {
         }
       }
     })();
-    if (window.Lightcord) return;
+	
+	//if (window.Lightcord) return;
+	
+	//Commenting that line to fix Lightcord infinite reload.
+	
     const AnchorClasses = WebpackModules.getByProps('anchor', 'anchorUnderlineOnHover') || {};
     const EmbedVideo = (() => {
       try {
@@ -1864,7 +1870,11 @@ module.exports = (() => {
       }
       load() {
         super.load();
-        if (window.Lightcord) return XenoLib.Notifications.warning(`[${this.getName()}] Lightcord is an unofficial and unsafe client with stolen code that is falsely advertising that it is safe, Lightcord has allowed the spread of token loggers hidden within plugins redistributed by them, and these plugins are not made to work on it. Your account is very likely compromised by malicious people redistributing other peoples plugins, especially if you didn't download this plugin from [GitHub](https://github.com/1Lighty/BetterDiscordPlugins/), you should change your password immediately. Consider using a trusted client mod like [BandagedBD](https://rauenzi.github.io/BetterDiscordApp/) or [Powercord](https://powercord.dev/) to avoid losing your account.`, { timeout: 0 });
+		
+		//if (window.Lightcord) return XenoLib.Notifications.warning(`[${this.getName()}] Lightcord is an unofficial and unsafe client with stolen code that is falsely advertising that it is safe, Lightcord has allowed the spread of token loggers hidden within plugins redistributed by them, and these plugins are not made to work on it. Your account is very likely compromised by malicious people redistributing other peoples plugins, especially if you didn't download this plugin from [GitHub](https://github.com/1Lighty/BetterDiscordPlugins/), you should change your password immediately. Consider using a trusted client mod like [BandagedBD](https://rauenzi.github.io/BetterDiscordApp/) or [Powercord](https://powercord.dev/) to avoid losing your account.`, { timeout: 0 });
+
+		// Commenting that line to remove annoying message when using Lightcord.
+		
         if (!BdApi.Plugins) return; /* well shit what now */
         if (!BdApi.isSettingEnabled || !BdApi.disableSetting) return;
         const prev = BdApi.isSettingEnabled('fork-ps-2');
@@ -1882,7 +1892,10 @@ module.exports = (() => {
           }
         }
         if (prev) BdApi.enableSetting('fork-ps-2');
-        if (window.Lightcord) location.reload();
+		
+		//if (window.Lightcord) location.reload();
+		
+		//Commenting that line to fix Lightcord infinite reload.
       }
       buildSetting(data) {
         if (data.type === 'position') {
