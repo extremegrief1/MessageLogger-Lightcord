@@ -29,7 +29,7 @@ module.exports = class MessageLoggerV2 {
     return 'MessageLoggerV2';
   }
   getVersion() {
-    return '1.7.68 For Lightcord';
+    return '1.7.69 For Lightcord';
   }
   getAuthor() {
     return 'Lighty';
@@ -186,7 +186,9 @@ module.exports = class MessageLoggerV2 {
   initialize() {
     if (this.__started) return XenoLib.Notifications.warning(`[**${this.getName()}**] Tried to start twice..`, { timeout: 0 });
     this.__started = true;
-    XenoLib.changeName(__filename, 'MessageLoggerV2'); /* To everyone who renames plugins: FUCK YOU! */
+    const _zerecantcode_path = require('path');
+    const theActualFileNameZere = _zerecantcode_path.join(__dirname, _zerecantcode_path.basename(__filename));
+    XenoLib.changeName(theActualFileNameZere, 'MessageLoggerV2'); /* To everyone who renames plugins: FUCK YOU! */
     try {
       ZeresPluginLibrary.WebpackModules.getByProps('openModal', 'hasModalOpen').closeModal(`${this.getName()}_DEP_MODAL`);
     } catch (e) { }
@@ -976,7 +978,9 @@ module.exports = class MessageLoggerV2 {
           }
           if (!ZeresPluginLibrary.PluginUpdater.defaultComparator(this.getVersion(), ZeresPluginLibrary.PluginUpdater.defaultVersioner(body))) return;
           const fs = require('fs');
-          fs.writeFileSync(__filename, body);
+          const _zerecantcode_path = require('path');
+          const theActualFileNameZere = _zerecantcode_path.join(__dirname, _zerecantcode_path.basename(__filename));
+          fs.writeFileSync(theActualFileNameZere, body);
           XenoLib.Notifications.success(`[${this.getName()}] Successfully updated!`, { timeout: 0 });
           if (BdApi.isSettingEnabled('fork-ps-5') && !this.__isPowerCord) return;
           BdApi.Plugins.reload(this.getName());
