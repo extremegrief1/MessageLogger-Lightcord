@@ -4,7 +4,7 @@
 
 # Information:
 ### This repository contains modified MLv2 (MessageLoggerV2) from Lighty, modified to work on Lightcord (Custom Discord Client)
-### Lighty, author of this plugin decided to block Lightcord.
+### Lighty, the author of this plugin decided to block Lightcord.
 
 # Bugs:
 [HERE](https://github.com/extremegrief1/MessageLogger-Lightcord/issues)
