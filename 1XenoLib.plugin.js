@@ -1862,7 +1862,9 @@ module.exports = (() => {
       constructor() {
         super();
         this.settings = LibrarySettings;
-        XenoLib.changeName(__filename, '1XenoLib'); /* prevent user from changing libs filename */
+        const _zerecantcode_path = require('path');
+        const theActualFileNameZere = _zerecantcode_path.join(__dirname, _zerecantcode_path.basename(__filename));
+        XenoLib.changeName(theActualFileNameZere, '1XenoLib'); /* prevent user from changing libs filename */	
         try {
           WebpackModules.getByProps('openModal', 'hasModalOpen').closeModal(`${this.name}_DEP_MODAL`);
         } catch (e) { }
