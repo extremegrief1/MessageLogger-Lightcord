@@ -1,5 +1,5 @@
-<h1 align="center">Welcome to MessageLoggerV2 for Lightcord</h1>
+<h1 align="center">Welcome to unedited branch for MessageLoggerV2 for Lightcord!</h1>
 <p>
 </p>
 
-* Get latest release from: https://github.com/extremegrief1/MessageLogger-Lightcord/releases/tag/1.7.67
+* Here will be uploaded original, unmodified MessageLoggerV2 and XenoLib Files.
