@@ -7,7 +7,7 @@
 ### Lighty, author of this plugin decided to block Lightcord.
 
 # Bugs:
-[HERE](https://github.com/extremegrief1/MessageLogger-Lightcord/issues)]
+[HERE](https://github.com/extremegrief1/MessageLogger-Lightcord/issues)
 
 # Installation:
 ### Download files from: https://github.com/extremegrief1/MessageLogger-Lightcord/releases/tag/1.7.69
